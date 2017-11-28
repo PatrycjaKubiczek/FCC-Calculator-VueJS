@@ -1,95 +1,61 @@
-//todo add two operators
+//todo fixed toFixed 
 var app = new Vue({
   el: "#app",
   data: {
-    currentNumber: '',
-    newNumber: '',
-    total: null,
-    display: 0,
-    operator: null,
-    sign: false
+    display: '',
+    dec: false
   },
   methods: {
-    checkLength(){
-      //todo set max to 9 digit
-    },
     enterNumber(num) {
-
-        if (this.operator === null) {
-            this.currentNumber += num;
-            this.display = this.currentNumber;
-            if(this.currentNumber !== '')
-              this.sign = true;
-              
-            // this.display = num.toString(); // to display as string
-        } else {
-          // this.total = 0;
-          this.newNumber += num;
-          this.display = this.newNumber; // to display as string
-          // console.log(num);
-        }
-//       } else {
-//         // this.display += num.toString();
-//         // this.currentNumber = parseFloat(this.display);
-//           this.display += num.toString();
-//           this.currentNumber = parseFloat(this.display);
-       
-//       }
+      // TODO - set max length
+        this.display += num;
+        console.log('num' + this.display);
+        
       
     },
-    
-    calculate(){
-      switch(this.operator) {
-        case "+":
-          // this.operator = "+";
-          this.total = parseFloat(this.currentNumber) + parseFloat(this.newNumber);
-          // this.total = this.currentNumber + this.newNumber;
-          break;
-        case "-":
-          this.total = parseFloat(this.currentNumber) - parseFloat(this.newNumber);
-          break;
-        case "*":
-          this.total = parseFloat(this.currentNumber) * parseFloat(this.newNumber);
-          break;
-        case "/":
-          this.total = parseFloat(this.currentNumber) / parseFloat(this.newNumber);
-          break;
+    enterOp(op){
+      var lastChar = this.display.slice(-1)
+      if(!isNaN(lastChar)){
+         this.display += op;
+      } else {
+        lastChar = op;
       }
-      this.display = this.total;
-      this.currentNumber = '' + this.total + ''; 
-      this.newNumber = '';
-      this.operator = null;
+      console.log(lastChar)
+    },
+    calculate(){
+      this.display = eval(this.display).toFixed(1);
+      // if(this.display.slice(-2) == .0){
+      //   this.display = this.display.slice(0,1);
+      // }
+      
+     
+      // if(this.dec == true){
+      //   this.display = eval(this.display).toFixed(1)
+      // } else {
+      //   this.display = eval(this.display);
+      //    this.display = '' + this.display + '';
+      //   // this.
+      // }
+      // this.display = this.total;
+      this.dec = false;
     },
     clearAll: function() {
-      this.currentNumber = '';
-      this.newNumber = '';
       this.total = '';
       this.display = '';
-      this.operator = null;
+      this.dec = false;
     },
     clearLast: function(){
-      if(this.operator != null) {
-        if(this.newNumber != ''){
-          this.newNumber = this.newNumber.slice(0, -1);
-          this.currentNumber = this.currentNumber.slice(0, -1);
-        } else {
-          this.operator = null;
-        }
-      } else {
-        this.currentNumber = this.currentNumber.slice(0, -1);
-        this.total = this.total.slice(0, -1);
-      }
+      this.display = this.display.slice(0,-1);
     },
-    decimal: function(){
-      if(this.currentNumber != ''){
-        if(this.newNumber != ''){
-          this.currentNumber = this.currentNumber;
-          this.newNumber = (this.newNumber / 1).toFixed(1).slice(0, -1);
-          // this.total = this.total.toFixed(2);
+    decimal(){
+      if(this.dec == false){
+        if(this.display == ''){
+          this.display = "0."
+          this.dec = true;
         } else {
-           this.currentNumber = (this.currentNumber / 1).toFixed(1).slice(0, -1);
-            // this.total = this.total.toFixed(2);
-        }
+          this.display = this.display + '.'  
+          this.dec = true;
+        }  
       }
     }
     

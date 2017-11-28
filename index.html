@@ -13,16 +13,15 @@
 </head>
 
 <body>
-  <div id="app">
+   <div id="app">
   <div class="container">
     <div class="header">
 
       <div class="row">
-        <h2 class="display" id="calculation"><span style="direction: ltr; display: block">{{currentNumber}} <span v-if="sign==true">{{operator}}</span> {{newNumber}}</span></h2>
       </div>
-      <div class="row">
-<!--                 <h2 class="display">{{total}}</h2>
-              <h2>operator: {{operator}}</h2> -->
+      <div class="row screen">
+        <h2 v-if="display == ''">0</h2>
+        <h2 v-else>{{display}}</h2>
       </div>
     </div>
     <div class="row">
@@ -34,49 +33,49 @@
       <div class="sign col border-grey" @click="clearAll()">
         C
       </div>
-      <div class="sign col-right col" @click="operator = '/'">
+      <div class="sign col-right col" @click="enterOp('/')">
         /
       </div>
     </div>
     <div class="row">
-      <div class="col number" @click="enterNumber(7)">
+      <div class="col number" @click="enterNumber('7')">
         7
       </div>
-      <div class="col number" @click="enterNumber(8)">
+      <div class="col number" @click="enterNumber('8')">
         8
       </div>
-      <div class="col number" @click="enterNumber(9)">
+      <div class="col number" @click="enterNumber('9')">
         9
       </div>
-      <div class="sign col-right col" @click="operator = '*'">
+      <div class="sign col-right col" @click="enterOp('*')">
         *
       </div>
     </div>
     <div class="row">
-      <div class="col number" @click="enterNumber(4)">
+      <div class="col number" @click="enterNumber('4')">
         4
       </div>
-      <div class="col number" @click="enterNumber(5)">
+      <div class="col number" @click="enterNumber('5')">
         5
       </div>
-      <div class="col number" @click="enterNumber(6)">
+      <div class="col number" @click="enterNumber('6')">
         6
       </div>
-      <div class="sign col-right col" @click="operator = '+'">
+      <div class="sign col-right col" @click="enterOp('+')">
         +
       </div>
     </div>
     <div class="row">
-      <div class="col number" @click="enterNumber(1)">
+      <div class="col number" @click="enterNumber('1')">
         1
       </div>
-      <div class="col number" @click="enterNumber(2)">
+      <div class="col number" @click="enterNumber('2')">
         2
       </div>
-      <div class="col number" @click="enterNumber(3)">
+      <div class="col number" @click="enterNumber('3')">
         3
       </div>
-      <div class="sign col-right col" @click="operator = '-'">
+      <div class="sign col-right col" @click="enterOp('-')">
         -
       </div>
     </div>
@@ -93,10 +92,10 @@
     </div>
   </div>
 </div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/popper.min.js'></script>
+  <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
 
     <script  src="js/index.js"></script>
 

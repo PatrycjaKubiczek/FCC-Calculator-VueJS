@@ -35,6 +35,7 @@ body {
   min-height: 115px;
   padding: 20px;
   border-bottom: 1px solid #eee;
+  overflow: hidden;
 }
 
 .sign {
@@ -49,11 +50,15 @@ body {
   background-color: #f0f0f0;
 }
 
-.display {
-  float: right;
+.screen {
   display: block;
   width: 100%;
   max-width: 350px;
   overflow: hidden;
   direction: rtl;
+}
+.screen h2 {
+  white-space: nowrap;
+  direction: ltr;
+  display: inline-block;
 }
